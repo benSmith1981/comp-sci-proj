@@ -138,6 +138,11 @@ app.config['MYSQL_PASSWORD'] = 'your_password'
 app.config['MYSQL_DB'] = 'your_db'
 mysql = MySQL(app)
 
+
+@app.route('/', methods=['GET', 'POST'])
+def welcome():
+    return render_template('index.html')
+
 @app.route('/pythonlogin', methods=['GET', 'POST'])
 def login():
     msg = 'Something went wrong'
@@ -156,7 +161,7 @@ def login():
             return redirect(url_for('home'))
         else:
             msg = 'Incorrect username/password!'
-    return render_template('login.html', msg=msg)
+    return render_template('index.html', msg=msg)
 
 @app.route('/pythonlogin/logout')
 def logout():
